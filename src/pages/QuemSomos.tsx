@@ -47,8 +47,9 @@ const QuemSomos = () => {
       <Navigation currentPage="quem-somos" />
 
       <PageHeader
-        title="QUEM SOMOS"
-        subtitle="Conheça a equipa que está a trabalhar para pôr os Olivais em Ação"
+        title="Somos um grupo moradores atentos, com conhecimento,
+determinação e vontade de fazer diferente."
+        subTitle="Unidos numa candidatura independente para a Junta de Freguesia dos Olivais. "
         backgroundImage={headerBackgroundLarge}
       />
 
