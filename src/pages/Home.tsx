@@ -62,13 +62,13 @@ export default function Home() {
             <div className="w-full text-white text-center">
               <p className="text-orange-500 uppercase tracking-wide mb-2 text-base sm:text-lg">AUTÁRQUICAS 2025-2029</p>
               <h1 className="font-extrabold leading-tight">
-                <div className="text-4xl sm:text-5xl tracking-widest mb-4">OLIVAIS</div>
+                <div className="text-4xl sm:text-5xl tracking-widest mb-4" style={{letterSpacing: '20em'}}>OLIVAIS</div>
                 <div className="mt-2 mb-4">
                   <span className="text-4xl sm:text-4xl">em </span>
                   <span className="text-5xl sm:text-6xl">AÇÃO</span>
                 </div>
               </h1>
-              <p className="text-lg sm:text-xl font-light max-w-2xl mx-auto">
+              <p className="text-lg sm:text-xl font-light max-w-2xl mx-auto bold">
                 Porque cidadãos exigentes <br />
                 fazem políticos competentes
               </p>
@@ -81,14 +81,14 @@ export default function Home() {
             <div className="md:w-1/2 lg:w-1/2 text-white text-left md:pr-8">
               <p className="text-orange-500 uppercase tracking-wide mb-2 text-lg">AUTÁRQUICAS 2025-2029</p>
               <h1 className="font-extrabold leading-tight">
-                <div className="text-6xl tracking-widest mb-6" style={{ letterSpacing: '0.15em' }}>OLIVAIS</div>
+                <div className="text-6xl tracking-widest mb-6" style={{ letterSpacing: '0.3em' }}>OLIVAIS</div>
                 <div className="mt-2">
                   <span className="text-5xl">em </span>
                   <span className="text-7xl lg:text-8xl">AÇÃO</span>
                 </div>
               </h1>
-              <p className="text-xl lg:text-2xl font-light max-w-2xl mt-6">
-                Porque cidadãos exigentes <br />
+              <p className="text-xl lg:text-xl font-light max-w-xl mt-6" style={{letterSpacing: '0.1em'}}>
+                Porque cidadãos exigentes <br/>
                 fazem políticos competentes
               </p>
             </div>
