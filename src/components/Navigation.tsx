@@ -14,7 +14,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
       <div className="hidden md:flex justify-around text-base">
         <a href="/" className={`hover:underline ${currentPage === 'home' ? 'border-b-2 border-orange-500' : ''}`}>INÍCIO</a>
         <a href="/quem-somos" className={`hover:underline ${currentPage === 'quem-somos' ? 'border-b-2 border-orange-500' : ''}`}>QUEM SOMOS</a>
-        <a href="#" className={`hover:underline ${currentPage === 'o-que-defendemos' ? 'border-b-2 border-orange-500' : ''}`}>O QUE DEFENDEMOS</a>
+        <a href="/o-que-defendemos" className={`hover:underline ${currentPage === 'o-que-defendemos' ? 'border-b-2 border-orange-500' : ''}`}>O QUE DEFENDEMOS</a>
         <a href="#" className={`hover:underline ${currentPage === 'participa' ? 'border-b-2 border-orange-500' : ''}`}>PARTICIPA</a>
         <a href="#" className={`hover:underline ${currentPage === 'donativos' ? 'border-b-2 border-orange-500' : ''}`}>DONATIVOS</a>
         <a href="#" className={`hover:underline ${currentPage === 'fala-connosco' ? 'border-b-2 border-orange-500' : ''}`}>FALA CONNOSCO</a>
