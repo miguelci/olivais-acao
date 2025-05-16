@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import logo from './../assets/logo-pequeno.png';
 import headerBackgroundSmall from './../assets/header-small.jpg';
 import headerBackgroundMedium from './../assets/header-medium.jpg';
@@ -6,13 +6,39 @@ import headerBackgroundLarge from './../assets/header-large.jpg';
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const manifestoRef = useRef<HTMLElement>(null);
+
+  // Track scrolling to animate the manifesto
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition > 100) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Function to scroll to manifesto section
+  const scrollToManifesto = () => {
+    manifestoRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col">
       {/* Top menu - with semi-transparent background for visibility */}
-      <nav className="bg-black bg-opacity-50 text-white font-bold py-3 relative z-20">
+      <nav className="bg-black bg-opacity-50 text-white font-bold py-3 fixed w-full z-50">
         {/* Desktop menu */}
         <div className="hidden md:flex justify-around text-base">
+          <a href="/" className="hover:underline border-b-2 border-orange-500">INÍCIO</a>
           <a href="/quem-somos" className="hover:underline">QUEM SOMOS</a>
           <a href="/o-que-defendemos" className="hover:underline">O QUE DEFENDEMOS</a>
           <a href="/participa" className="hover:underline">PARTICIPA</a>
@@ -47,6 +73,7 @@ export default function Home() {
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-80 shadow-lg z-30">
             <div className="flex flex-col py-2">
+              <a href="/" className="px-4 py-2 bg-white bg-opacity-20">INÍCIO</a>
               <a href="/quem-somos" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">QUEM SOMOS</a>
               <a href="/o-que-defendemos" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">O QUE DEFENDEMOS</a>
               <a href="/participa" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">PARTICIPA</a>
@@ -57,8 +84,8 @@ export default function Home() {
         )}
       </nav>
 
-      {/* Main content */}
-      <main className="relative flex-grow flex items-center px-4 sm:px-6 py-8">
+      {/* Hero section */}
+      <section className="min-h-screen relative flex items-center pt-16">
         {/* Background images with built-in darkening effect */}
         <div
           className="absolute inset-0 top-0 bg-cover bg-center block sm:hidden z-0"
@@ -83,42 +110,127 @@ export default function Home() {
         ></div>
 
         {/* Content container with higher z-index - wider layout */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            {/* Left text - expanded width */}
-            <div className="w-full md:w-3/5 lg:w-3/5 text-white text-center md:text-left mb-8 md:mb-0 md:pr-8">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6">
+          {/* Mobile layout (logo above text) */}
+          <div className="flex flex-col md:hidden items-center">
+            {/* Logo - mobile version (larger) */}
+            <div className="flex items-center justify-center mb-8">
+              <img
+                src={logo}
+                alt="Olivais em Ação logo"
+                className="w-80 h-auto"
+              />
+            </div>
+
+            {/* Text for mobile */}
+            <div className="w-full text-white text-center">
               <p className="text-orange-500 uppercase tracking-wide mb-2 text-base sm:text-lg">AUTÁRQUICAS 2025-2029</p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4">
-                OLIVAIS <br />
-                <span className="text-5xl sm:text-4xl md:text-5xl">em </span>
-                <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl">AÇÃO</span>
+              <h1 className="font-extrabold leading-tight">
+                <div className="text-4xl sm:text-5xl tracking-widest mb-4">OLIVAIS</div>
+                <div className="mt-2 mb-4">
+                  <span className="text-4xl sm:text-4xl">em </span>
+                  <span className="text-5xl sm:text-6xl">AÇÃO</span>
+                </div>
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl font-light max-w-2xl mx-auto md:mx-0">
+              <p className="text-lg sm:text-xl font-light max-w-2xl mx-auto">
+                Porque cidadãos exigentes <br />
+                fazem políticos competentes
+              </p>
+            </div>
+          </div>
+
+          {/* Desktop layout (side by side) */}
+          <div className="hidden md:flex md:flex-row justify-between items-center">
+            {/* Left text */}
+            <div className="md:w-1/2 lg:w-1/2 text-white text-left md:pr-8">
+              <p className="text-orange-500 uppercase tracking-wide mb-2 text-lg">AUTÁRQUICAS 2025-2029</p>
+              <h1 className="font-extrabold leading-tight">
+                <div className="text-6xl tracking-widest mb-6" style={{ letterSpacing: '0.15em' }}>OLIVAIS</div>
+                <div className="mt-2">
+                  <span className="text-5xl">em </span>
+                  <span className="text-7xl lg:text-8xl">AÇÃO</span>
+                </div>
+              </h1>
+              <p className="text-xl lg:text-2xl font-light max-w-2xl mt-6">
                 Porque cidadãos exigentes <br />
                 fazem políticos competentes
               </p>
             </div>
 
-            {/* Logo - mobile version (larger) */}
-            <div className="flex md:hidden items-center justify-center mb-6">
-              <img
-                src={logo}
-                alt="Olivais em Ação logo"
-                className="w-64 h-auto" /* Increased from w-48 to w-64 */
-              />
-            </div>
-
             {/* Logo - desktop version (larger) */}
-            <div className="hidden md:flex items-center justify-center md:w-2/5 lg:w-2/5">
+            <div className="flex items-center justify-center md:w-1/2 lg:w-1/2">
               <img
                 src={logo}
                 alt="Olivais em Ação logo"
-                className="w-full max-w-sm h-auto" /* Increased from max-w-xs to max-w-sm */
+                className="w-full max-w-md h-auto"
               />
             </div>
           </div>
+
+          {/* Scroll indicator - positioned lower and clickable */}
+          <div
+            className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 text-white text-center cursor-pointer hover:text-orange-300 transition-colors duration-300"
+            onClick={scrollToManifesto}
+          >
+            <p className="mb-2 text-sm uppercase tracking-widest">Descubra o nosso manifesto</p>
+            <svg className="w-6 h-6 mx-auto animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Manifesto section - added ref for scrolling */}
+      <section ref={manifestoRef} className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-green-800">
+            <span className="text-orange-600">Olivais em Ação</span>
+          </h2>
+
+          <div className="prose prose-lg md:prose-xl max-w-none text-gray-800 space-y-6">
+            <p className="text-xl md:text-xl">
+              <strong>Eu vivo nos Olivais e conheço o bairro.</strong><br />
+              As ruas, os jardins, as árvores, os mercados, as associações.<br />
+              Gosto de viver nos Olivais.<br />
+              Sei o valor dos vizinhos que se conhecem, que se apoiam,<br />
+              Que constroem juntos o dia a dia.<br />
+              Aqui há memórias e há futuro.
+            </p>
+
+            <p className="text-xl md:text-xl">
+              <strong>Eu vivo nos Olivais e vejo o que falta.</strong><br />
+              Vejo espaços abandonados, jardins mal cuidados,<br />
+              Ruas por arranjar, lixo por recolher.<br />
+              E vejo pessoas que sentem que as suas ideias<br />
+              E a sua voz são ignoradas.
+            </p>
+
+            <p className="text-xl md:text-xl">
+              <strong>Eu vivo nos Olivais e não me resigno.</strong><br />
+              Quero uma freguesia com uma gestão <strong>transparente e sustentável</strong>,<br />
+              <strong>Próxima das pessoas</strong>, onde <strong>todos contam</strong>,<br />
+              Do mais novo ao mais velho.<br />
+              Uma freguesia que escuta, que dialoga e que faz.
+            </p>
+
+            <p className="text-xl md:text-xl">
+              <strong>Nós vivemos nos Olivais e queremos os Olivais em Ação.</strong><br />
+              Somos um grupo de cidadãos atentos, com conhecimento,<br />
+              Determinação e vontade de fazer diferente,<br />
+              Unidos numa candidatura independente para a Junta de Freguesia.
+            </p>
+
+            <p className="text-xl md:text-2xl font-bold text-green-800">
+              <strong>Acreditamos que cidadãos exigentes fazem políticos competentes.</strong>
+            </p>
+
+            <p className="text-2xl md:text-3xl font-bold text-orange-600 text-center mt-10">
+              <strong>Junta-te a nós.</strong><br />
+              <strong>Contamos com a tua AÇÃO!</strong>
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
