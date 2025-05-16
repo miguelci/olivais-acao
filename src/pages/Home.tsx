@@ -62,7 +62,7 @@ export default function Home() {
             <div className="w-full text-white text-center">
               <p className="text-orange-500 uppercase tracking-wide mb-2 text-base sm:text-lg">AUTÁRQUICAS 2025-2029</p>
               <h1 className="font-extrabold leading-tight">
-                <div className="text-4xl sm:text-5xl tracking-widest mb-4" style={{letterSpacing: '20em'}}>OLIVAIS</div>
+                <div className="text-4xl sm:text-5xl tracking-widest mb-4">OLIVAIS</div>
                 <div className="mt-2 mb-4">
                   <span className="text-4xl sm:text-4xl">em </span>
                   <span className="text-5xl sm:text-6xl">AÇÃO</span>
