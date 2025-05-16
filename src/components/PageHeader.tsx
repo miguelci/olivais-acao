@@ -1,12 +1,12 @@
 type PageHeaderProps = {
   title?: string;
-  subTitle?: string;
+  subTitle?: string | React.ReactNode;
   backgroundImage: string;
 };
 
 const PageHeader = ({ title, subTitle, backgroundImage }: PageHeaderProps) => {
   return (
-    <div className="relative py-16 bg-black">
+    <div className="relative py-20 bg-black">
       {/* Background image with overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-50"
@@ -17,16 +17,16 @@ const PageHeader = ({ title, subTitle, backgroundImage }: PageHeaderProps) => {
       ></div>
 
       {/* Header content */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
+      <div className="relative z-10 container mx-auto px-4 text-white">
         {title && (
-          <p className="text-xl md:text-2xl font-light max-w-3xl mx-auto mb-3">
+          <p className="text-xl md:text-xl font-light max-w-3xl mx-auto mt-4">
             {title}
           </p>
         )}
         {subTitle && (
-          <h1 className="text-3xl md:text-3xl font-bold max-w-3xl mx-auto tracking-wide" style={{ letterSpacing: '0.05em' }}>
+          <p className="text-xl md:text-3xl font-light max-w-3xl mx-auto mt-4 bold">
             {subTitle}
-          </h1>
+          </p>
         )}
       </div>
     </div>
