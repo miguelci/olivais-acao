@@ -1,6 +1,6 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Home from "./components/Home.tsx";
-import QuemSomos from "./components/QuemSomos.tsx";
+import Home from "./pages/Home.tsx";
+import QuemSomos from "./pages/QuemSomos.tsx";
 
 function App() {
   return (

@@ -1,28 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import logo from './../assets/logo-pequeno.png';
 import headerBackgroundSmall from './../assets/header-small.jpg';
 import headerBackgroundMedium from './../assets/header-medium.jpg';
 import headerBackgroundLarge from './../assets/header-large.jpg';
+import Navigation from './../components/Navigation';
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const manifestoRef = useRef<HTMLElement>(null);
-
-  // Track scrolling to animate the manifesto
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition > 100) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Function to scroll to manifesto section
   const scrollToManifesto = () => {
@@ -34,55 +18,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col">
-      {/* Top menu - with semi-transparent background for visibility */}
-      <nav className="bg-black bg-opacity-50 text-white font-bold py-3 fixed w-full z-50">
-        {/* Desktop menu */}
-        <div className="hidden md:flex justify-around text-base">
-          <a href="/" className="hover:underline border-b-2 border-orange-500">INÍCIO</a>
-          <a href="/quem-somos" className="hover:underline">QUEM SOMOS</a>
-          <a href="/o-que-defendemos" className="hover:underline">O QUE DEFENDEMOS</a>
-          <a href="/participa" className="hover:underline">PARTICIPA</a>
-          <a href="/donativos" className="hover:underline">DONATIVOS</a>
-          <a href="/fala-connosco" className="hover:underline">FALA CONNOSCO</a>
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="md:hidden flex justify-between items-center px-4">
-          <div className="flex items-center">
-            <img src={logo} alt="Logo" className="h-8 mr-2" />
-            <span className="font-bold text-lg">Olivais em Ação</span>
-          </div>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="focus:outline-none"
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileMenuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
-        </div>
-
-        {/* Mobile menu dropdown */}
-        {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-black bg-opacity-80 shadow-lg z-30">
-            <div className="flex flex-col py-2">
-              <a href="/" className="px-4 py-2 bg-white bg-opacity-20">INÍCIO</a>
-              <a href="/quem-somos" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">QUEM SOMOS</a>
-              <a href="/o-que-defendemos" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">O QUE DEFENDEMOS</a>
-              <a href="/participa" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">PARTICIPA</a>
-              <a href="/donativos" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">DONATIVOS</a>
-              <a href="/fala-connosco" className="px-4 py-2 hover:bg-white hover:bg-opacity-20">FALA CONNOSCO</a>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Navigation currentPage="home" />
 
       {/* Hero section */}
       <section className="min-h-screen relative flex items-center pt-16">
@@ -169,7 +105,7 @@ export default function Home() {
 
           {/* Scroll indicator - positioned lower and clickable */}
           <div
-            className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 text-white text-center cursor-pointer hover:text-orange-300 transition-colors duration-300"
+            className="absolute -bottom-22 left-1/2 transform -translate-x-1/2 text-white text-center cursor-pointer hover:text-orange-300 transition-colors duration-300"
             onClick={scrollToManifesto}
           >
             <p className="mb-2 text-sm uppercase tracking-widest">Descubra o nosso manifesto</p>
@@ -220,7 +156,7 @@ export default function Home() {
               Unidos numa candidatura independente para a Junta de Freguesia.
             </p>
 
-            <p className="text-xl md:text-2xl font-bold text-green-800">
+            <p className="text-xl md:text-xl font-bold text-green-800">
               <strong>Acreditamos que cidadãos exigentes fazem políticos competentes.</strong>
             </p>
 
