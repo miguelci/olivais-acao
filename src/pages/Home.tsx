@@ -4,6 +4,7 @@ import headerBackgroundSmall from './../assets/header-small.jpg';
 import headerBackgroundMedium from './../assets/header-medium.jpg';
 import headerBackgroundLarge from './../assets/header-large.jpg';
 import Navigation from './../components/Navigation';
+import Footer from "../components/Footer.tsx";
 
 export default function Home() {
   const manifestoRef = useRef<HTMLElement>(null);
@@ -167,6 +168,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

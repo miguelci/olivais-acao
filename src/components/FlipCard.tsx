@@ -16,7 +16,7 @@ const FlipCard = ({ title, frontContent, backContent, color }: FlipCardProps) =>
 
   return (
     <div
-      className="h-[450px] md:h-[500px] w-full perspective-1000 cursor-pointer"
+      className="h-[510px] md:h-[490px] w-full perspective-1000 cursor-pointer"
       onClick={flipCard}
     >
       <div

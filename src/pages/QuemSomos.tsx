@@ -3,6 +3,7 @@ import presidente from './../assets/presidente.jpeg';
 import catarina from './../assets/catarina.jpeg';
 import Navigation from './../components/Navigation';
 import PageHeader from './../components/PageHeader';
+import Footer from "../components/Footer.tsx";
 
 // Import other team member images as needed
 // import teamMember2 from './../assets/team-member2.jpg';
@@ -96,6 +97,7 @@ determinação e vontade de fazer diferente."
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

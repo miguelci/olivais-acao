@@ -2,6 +2,7 @@ import headerBackgroundLarge from './../assets/header-large.jpg';
 import Navigation from './../components/Navigation';
 import PageHeader from './../components/PageHeader';
 import FlipCard from './../components/FlipCard';
+import Footer from "../components/Footer.tsx";
 
 const OQueDefendemos = () => {
   // Campaign values data
@@ -113,9 +114,10 @@ const OQueDefendemos = () => {
               />
             ))}
           </div>
-          
+
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
